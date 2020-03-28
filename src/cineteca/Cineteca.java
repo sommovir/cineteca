@@ -5,7 +5,7 @@
  */
 package cineteca;
 
-import it.lelecora.cine.gui.MainFrame;
+import it.lelecora.cine.luca.gui.MainFrame;
 
 /**
  *

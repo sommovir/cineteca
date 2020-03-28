@@ -1,4 +1,4 @@
-package it.lelecora.cine.controllers.exceptions;
+package it.lelecora.cine.global.controllers.exceptions;
 
 public class PreexistingEntityException extends Exception {
     public PreexistingEntityException(String message, Throwable cause) {

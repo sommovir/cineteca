@@ -1,4 +1,4 @@
-package it.lelecora.cine.controllers.exceptions;
+package it.lelecora.cine.global.controllers.exceptions;
 
 public class NonexistentEntityException extends Exception {
     public NonexistentEntityException(String message, Throwable cause) {

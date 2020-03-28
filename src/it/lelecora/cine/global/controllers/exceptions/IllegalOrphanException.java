@@ -1,4 +1,4 @@
-package it.lelecora.cine.controllers.exceptions;
+package it.lelecora.cine.global.controllers.exceptions;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.lelecora.cine.controllers;
+package it.lelecora.cine.global.controllers;
 
-import it.lelecora.cine.controllers.exceptions.NonexistentEntityException;
-import it.lelecora.cine.entities.Film;
+import it.lelecora.cine.global.controllers.exceptions.NonexistentEntityException;
+import it.lelecora.cine.global.entities.Regista;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -20,9 +20,9 @@ import javax.persistence.criteria.Root;
  *
  * @author Luca Coraci <luca.coraci@istc.cnr.it>
  */
-public class FilmJpaController implements Serializable {
+public class RegistaJpaController implements Serializable {
 
-    public FilmJpaController(EntityManagerFactory emf) {
+    public RegistaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,12 +31,12 @@ public class FilmJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Film film) {
+    public void create(Regista regista) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(film);
+            em.persist(regista);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -45,19 +45,19 @@ public class FilmJpaController implements Serializable {
         }
     }
 
-    public void edit(Film film) throws NonexistentEntityException, Exception {
+    public void edit(Regista regista) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            film = em.merge(film);
+            regista = em.merge(regista);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = film.getId();
-                if (findFilm(id) == null) {
-                    throw new NonexistentEntityException("The film with id " + id + " no longer exists.");
+                Long id = regista.getId();
+                if (findRegista(id) == null) {
+                    throw new NonexistentEntityException("The regista with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -73,14 +73,14 @@ public class FilmJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Film film;
+            Regista regista;
             try {
-                film = em.getReference(Film.class, id);
-                film.getId();
+                regista = em.getReference(Regista.class, id);
+                regista.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The film with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The regista with id " + id + " no longer exists.", enfe);
             }
-            em.remove(film);
+            em.remove(regista);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,19 +89,19 @@ public class FilmJpaController implements Serializable {
         }
     }
 
-    public List<Film> findFilmEntities() {
-        return findFilmEntities(true, -1, -1);
+    public List<Regista> findRegistaEntities() {
+        return findRegistaEntities(true, -1, -1);
     }
 
-    public List<Film> findFilmEntities(int maxResults, int firstResult) {
-        return findFilmEntities(false, maxResults, firstResult);
+    public List<Regista> findRegistaEntities(int maxResults, int firstResult) {
+        return findRegistaEntities(false, maxResults, firstResult);
     }
 
-    private List<Film> findFilmEntities(boolean all, int maxResults, int firstResult) {
+    private List<Regista> findRegistaEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Film.class));
+            cq.select(cq.from(Regista.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,20 +113,20 @@ public class FilmJpaController implements Serializable {
         }
     }
 
-    public Film findFilm(Long id) {
+    public Regista findRegista(Long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Film.class, id);
+            return em.find(Regista.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getFilmCount() {
+    public int getRegistaCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Film> rt = cq.from(Film.class);
+            Root<Regista> rt = cq.from(Regista.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
