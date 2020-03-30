@@ -1,0 +1,41 @@
+
+mi da un errore di ccompilazione uso JDK 8 
+
+java --version
+openjdk 11.0.6 2020-01-14
+OpenJDK Runtime Environment (build 11.0.6+10-post-Ubuntu-1ubuntu119.10.1)
+OpenJDK 64-Bit Server VM (build 11.0.6+10-post-Ubuntu-1ubuntu119.10.1, mixed mode, sharing)
+
+ERRORE 
+warning: [options] bootstrap class path not set in conjunction with -source 8
+warning: Supported source version 'RELEASE_6' from annotation processor 'org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor' less than -source '8'
+Note: Creating non-static metadata factory ...
+2 warnings
+
+
+An annotation processor threw an uncaught exception.
+Consult the following stack trace for details.
+java.lang.NoClassDefFoundError: javax/annotation/Generated
+	at org.eclipse.persistence.internal.jpa.modelgen.MetadataMirrorFactory.setEnvironments(MetadataMirrorFactory.java:327)
+	at org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor.process(CanonicalModelProcessor.java:368)
+	at jdk.compiler/com.sun.tools.javac.processing.JavacProcessingEnvironment.callProcessor(JavacProcessingEnvironment.java:980)
+	at jdk.compiler/com.sun.tools.javac.processing.JavacProcessingEnvironment.discoverAndRunProcs(JavacProcessingEnvironment.java:896)
+	at jdk.compiler/com.sun.tools.javac.processing.JavacProcessingEnvironment$Round.run(JavacProcessingEnvironment.java:1222)
+	at jdk.compiler/com.sun.tools.javac.processing.JavacProcessingEnvironment.doProcessing(JavacProcessingEnvironment.java:1334)
+	at jdk.compiler/com.sun.tools.javac.main.JavaCompiler.processAnnotations(JavaCompiler.java:1258)
+	at jdk.compiler/com.sun.tools.javac.main.JavaCompiler.compile(JavaCompiler.java:936)
+	at jdk.compiler/com.sun.tools.javac.main.Main.compile(Main.java:311)
+	at jdk.compiler/com.sun.tools.javac.main.Main.compile(Main.java:170)
+	at jdk.compiler/com.sun.tools.javac.Main.compile(Main.java:57)
+	at jdk.compiler/com.sun.tools.javac.Main.main(Main.java:43)
+Caused by: java.lang.ClassNotFoundException: javax.annotation.Generated
+	at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:471)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:588)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	... 12 more
+
+-----------------------------------------------------------------------------
+
+Converebbe trasformare Regista in RegistaEntity e Film in FilmEntity
+
+Le mie aggiunte sono in prova001
