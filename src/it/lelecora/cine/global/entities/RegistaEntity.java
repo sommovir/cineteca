@@ -25,7 +25,7 @@ public class RegistaEntity implements Serializable {
     private Long id;
     @Column(unique = true)
     private String nome;
-    private String Cognome;
+    private String cognome;
 
     public RegistaEntity() {
     }
@@ -47,11 +47,11 @@ public class RegistaEntity implements Serializable {
     }
 
     public String getCognome() {
-        return Cognome;
+        return cognome;
     }
 
     public void setCognome(String Cognome) {
-        this.Cognome = Cognome;
+        this.cognome = Cognome;
     }
         
     @Override

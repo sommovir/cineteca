@@ -12,6 +12,8 @@ import it.lelecora.cine.global.entities.RegistaEntity;
 import it.lelecora.cine.global.exceptions.AlreadyExistingException;
 import it.lelecora.cine.global.logic.ManagerInterface;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
@@ -62,7 +64,7 @@ public class prova001 implements ManagerInterface{
     
     /*
        da aggiungere alla FilmEntity
-        @NamedQuery(name = "getTitolo", query = "SELECT a FROM FilmEntity a WHERE a.titolo= :titolo")
+        @NamedQuery(name = "getTitolo", query = "SELECT a FROM FilmEntity a")
     */
     @Override
     public List<FilmEntity> getAllFilm() {
@@ -75,11 +77,10 @@ public class prova001 implements ManagerInterface{
         return filmTQ.getResultList();
     }
 
-    public boolean isFilmAlreadyExits(FilmEntity film){
+    public void checkFilmAlreadyExits(FilmEntity film) throws AlreadyExistingException{
         if (getFilm(film) == null){
-            return false;
+            throw new AlreadyExistingException();
         }
-        return true;
     }
     
     /* 
@@ -101,23 +102,63 @@ public class prova001 implements ManagerInterface{
 
     @Override
     public void saveRegista(RegistaEntity regista) throws AlreadyExistingException {
+        checkRegistaAlreadyExits(regista);
         
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.        
+        RegistaJpaController registaJpaController = 
+            new RegistaJpaController(Persistence.createEntityManagerFactory("CinetecaPU"));
+        
+        registaJpaController.create(regista);    
     }
 
+    public void checkRegistaAlreadyExits(RegistaEntity regista) throws AlreadyExistingException{
+        if (getResista(regista) == null){
+            throw new AlreadyExistingException();
+        }
+    }    
+    
     @Override
     public void editRegista(RegistaEntity regista) throws AlreadyExistingException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            checkRegistaAlreadyExits(regista);
+            
+            RegistaJpaController registaJpaController =
+                    new RegistaJpaController(Persistence.createEntityManagerFactory("CinetecaPU"));
+            
+            registaJpaController.edit(regista);
+
+        } catch (Exception ex) {
+            Logger.getLogger(prova001.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
+    /*
+       da aggiungere alla RegistaEntity
+        @NamedQuery(name = "getCognome", query = "SELECT a FROM RegistaEntity a")
+    */
     @Override
     public List<RegistaEntity> getAllRegisti() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager registaEM = 
+            Persistence.createEntityManagerFactory("CinetecaPU").createEntityManager();
+        
+        TypedQuery < RegistaEntity > registaTQ = 
+            registaEM.createNamedQuery("getCognome", RegistaEntity.class);
+        return registaTQ.getResultList();
     }
 
+    /*
+       da aggiungere alla RegistaEntity
+        @NamedQuery(name = "getCognome", query = "SELECT a FROM RegistaEntity a WHERE a.cognome= :cognome")
+    */    
     @Override
     public RegistaEntity getResista(RegistaEntity registaEntity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager registaEM = 
+            Persistence.createEntityManagerFactory("CinetecaPU").createEntityManager();
+        
+        TypedQuery < RegistaEntity > registaTQ = 
+            registaEM.createNamedQuery("getCognome", RegistaEntity.class);
+        
+        registaTQ.setParameter("getCognome", registaEntity.getCognome());
+        return registaTQ.getSingleResult();
     }
 
 }
