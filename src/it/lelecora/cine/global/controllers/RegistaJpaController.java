@@ -6,7 +6,7 @@
 package it.lelecora.cine.global.controllers;
 
 import it.lelecora.cine.global.controllers.exceptions.NonexistentEntityException;
-import it.lelecora.cine.global.entities.Regista;
+import it.lelecora.cine.global.entities.RegistaEntity;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -31,7 +31,7 @@ public class RegistaJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Regista regista) {
+    public void create(RegistaEntity regista) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -45,7 +45,7 @@ public class RegistaJpaController implements Serializable {
         }
     }
 
-    public void edit(Regista regista) throws NonexistentEntityException, Exception {
+    public void edit(RegistaEntity regista) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -73,9 +73,9 @@ public class RegistaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Regista regista;
+            RegistaEntity regista;
             try {
-                regista = em.getReference(Regista.class, id);
+                regista = em.getReference(RegistaEntity.class, id);
                 regista.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The regista with id " + id + " no longer exists.", enfe);
@@ -89,19 +89,19 @@ public class RegistaJpaController implements Serializable {
         }
     }
 
-    public List<Regista> findRegistaEntities() {
+    public List<RegistaEntity> findRegistaEntities() {
         return findRegistaEntities(true, -1, -1);
     }
 
-    public List<Regista> findRegistaEntities(int maxResults, int firstResult) {
+    public List<RegistaEntity> findRegistaEntities(int maxResults, int firstResult) {
         return findRegistaEntities(false, maxResults, firstResult);
     }
 
-    private List<Regista> findRegistaEntities(boolean all, int maxResults, int firstResult) {
+    private List<RegistaEntity> findRegistaEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Regista.class));
+            cq.select(cq.from(RegistaEntity.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,10 +113,10 @@ public class RegistaJpaController implements Serializable {
         }
     }
 
-    public Regista findRegista(Long id) {
+    public RegistaEntity findRegista(Long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Regista.class, id);
+            return em.find(RegistaEntity.class, id);
         } finally {
             em.close();
         }
@@ -126,7 +126,7 @@ public class RegistaJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Regista> rt = cq.from(Regista.class);
+            Root<RegistaEntity> rt = cq.from(RegistaEntity.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

@@ -7,8 +7,8 @@ package it.lelecora.cine.lele.engine;
 
 import it.lelecora.cine.global.controllers.FilmJpaController;
 import it.lelecora.cine.global.controllers.RegistaJpaController;
-import it.lelecora.cine.global.entities.Film;
-import it.lelecora.cine.global.entities.Regista;
+import it.lelecora.cine.global.entities.FilmEntity;
+import it.lelecora.cine.global.entities.RegistaEntity;
 import it.lelecora.cine.global.exceptions.AlreadyExistingException;
 import it.lelecora.cine.global.logic.ManagerInterface;
 import java.util.List;
@@ -22,6 +22,7 @@ import javax.persistence.TypedQuery;
  */
 public class prova001 implements ManagerInterface{
 
+    // se l'idea ti piacie poi faccio getInstance
     public prova001() {
         FilmJpaController filmJpaController = new 
             FilmJpaController(Persistence.createEntityManagerFactory("CinetecaPU"));
@@ -29,10 +30,10 @@ public class prova001 implements ManagerInterface{
         RegistaJpaController registaJpaController = new 
             RegistaJpaController(Persistence.createEntityManagerFactory("CinetecaPU"));
     
-        Regista registaEntity  = new Regista();
+        RegistaEntity registaEntity  = new RegistaEntity();
         registaEntity.setNome("Lele");
         
-        Film filmEntity = new Film();
+        FilmEntity filmEntity = new FilmEntity();
         filmEntity.setAnno(1979);
         filmEntity.setAttorePrincipale("Luca Coraci");
         filmEntity.setRegista(registaEntity);
@@ -44,46 +45,79 @@ public class prova001 implements ManagerInterface{
         registaJpaController.create(registaEntity);
     }
 
-    
-    // non sono sicuro di getTitolo
+    /*
+       da aggiungere alla FilmEntity
+        @NamedQuery(name = "getTitolo", query = "SELECT a FROM FilmEntity a WHERE a.titolo= :titolo")
+    */    
     @Override
-    public List<Film> getAllFilm() {
+    public FilmEntity getFilm(FilmEntity film) {
         EntityManager filmEM = 
             Persistence.createEntityManagerFactory("CinetecaPU").createEntityManager();
         
-        TypedQuery < Film > filmTQ = 
-            filmEM.createNamedQuery("getTitolo", Film.class);
+        TypedQuery < FilmEntity > FilmTQ = 
+            filmEM.createNamedQuery("getTitolo", FilmEntity.class);
+        
+        return FilmTQ.getSingleResult();
+    }    
+    
+    /*
+       da aggiungere alla FilmEntity
+        @NamedQuery(name = "getTitolo", query = "SELECT a FROM FilmEntity a WHERE a.titolo= :titolo")
+    */
+    @Override
+    public List<FilmEntity> getAllFilm() {
+        EntityManager filmEM = 
+            Persistence.createEntityManagerFactory("CinetecaPU").createEntityManager();
+        
+        TypedQuery < FilmEntity > filmTQ = 
+            filmEM.createNamedQuery("getTitolo", FilmEntity.class);
         
         return filmTQ.getResultList();
     }
 
-    // NOn so come devo comportarmi devo fare due ricerche su di entity diverse forse qualcosa con one to many
+    public boolean isFilmAlreadyExits(FilmEntity film){
+        if (getFilm(film) == null){
+            return false;
+        }
+        return true;
+    }
+    
+    /* 
+       da aggiungere alla FilmEntity
+        @NamedQuery(name = "getId", query = "SELECT a FROM FilmEntity a WHERE a.id= :id")
+    */ 
     @Override
-    public List<Film> getAllFilm(long registaID) {
+    public List<FilmEntity> getAllFilm(long registaID) {
         EntityManager filmEM = 
             Persistence.createEntityManagerFactory("CinetecaPU").createEntityManager();
         
-        TypedQuery < Film > filmByRegistaTq = 
-            filmEM.createNamedQuery("getTitolo", Film.class);
+        TypedQuery < FilmEntity > filmByRegistaTq = 
+            filmEM.createNamedQuery("getId", FilmEntity.class);
         
-        filmByRegistaTq.setParameter("id", registaID);
+        filmByRegistaTq.setParameter("Id", registaID);
         
         return filmByRegistaTq.getResultList();
     }
 
     @Override
-    public void saveRegista(Regista regista) throws AlreadyExistingException {
+    public void saveRegista(RegistaEntity regista) throws AlreadyExistingException {
+        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.        
+    }
+
+    @Override
+    public void editRegista(RegistaEntity regista) throws AlreadyExistingException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void editRegista(Regista regista) throws AlreadyExistingException {
+    public List<RegistaEntity> getAllRegisti() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Regista> getAllRegisti() {
+    public RegistaEntity getResista(RegistaEntity registaEntity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

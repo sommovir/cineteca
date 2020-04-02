@@ -18,7 +18,7 @@ import javax.persistence.OneToOne;
  * @author Luca Coraci <luca.coraci@istc.cnr.it>
  */
 @Entity
-public class Film implements Serializable {
+public class FilmEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -30,9 +30,9 @@ public class Film implements Serializable {
     private String titoloOriginale;
     private String attorePrincipale;
     @OneToOne
-    private Regista regista;
+    private RegistaEntity regista;
 
-    public Film() {
+    public FilmEntity() {
     }
 
     public String getTitolo() {
@@ -67,11 +67,11 @@ public class Film implements Serializable {
         this.attorePrincipale = attorePrincipale;
     }
 
-    public Regista getRegista() {
+    public RegistaEntity getRegista() {
         return regista;
     }
 
-    public void setRegista(Regista regista) {
+    public void setRegista(RegistaEntity regista) {
         this.regista = regista;
     }
     
@@ -94,10 +94,10 @@ public class Film implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Film)) {
+        if (!(object instanceof FilmEntity)) {
             return false;
         }
-        Film other = (Film) object;
+        FilmEntity other = (FilmEntity) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

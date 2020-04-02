@@ -5,8 +5,8 @@
  */
 package it.lelecora.cine.global.logic;
 
-import it.lelecora.cine.global.entities.Film;
-import it.lelecora.cine.global.entities.Regista;
+import it.lelecora.cine.global.entities.FilmEntity;
+import it.lelecora.cine.global.entities.RegistaEntity;
 import it.lelecora.cine.global.exceptions.AlreadyExistingException;
 import java.util.List;
 
@@ -17,36 +17,47 @@ import java.util.List;
 public interface ManagerInterface {
     
     /**
+     * Restituisce un film specifico
+     */
+    public FilmEntity getFilm(FilmEntity film);
+    
+    /**
      * restituisce la lista di tutti i film presenti nel database
      * @return 
      */
-    public List<Film> getAllFilm();
+    public List<FilmEntity> getAllFilm();
     
     /**
      * restituisce tutti i film avente per regista il regista con l'id in input
      * @param regista
      * @return 
      */
-    public List<Film> getAllFilm(long registaID);
+    public List<FilmEntity> getAllFilm(long registaID);
     
     /**
      * Salva nel DB il regista in input, lanciando un eccezione se il nome del regista è già contenuto nel db
      * @param regista
      * @throws AlreadyExistingException 
      */
-    public void saveRegista(Regista regista) throws AlreadyExistingException;
+    public void saveRegista(RegistaEntity regista) throws AlreadyExistingException;
     
     /**
      * Modifica i dati del regista in input, lanciando un eccezione se il nome editato del regista è già contenuto nel db
      * @param regista
      * @throws AlreadyExistingException 
      */
-    public void editRegista(Regista regista) throws AlreadyExistingException;
+    public void editRegista(RegistaEntity regista) throws AlreadyExistingException;
     
     /**
      * restituisce la lista di tutti i registi salvati nel sistema
      * @return 
      */
-    public List<Regista> getAllRegisti();
+    public List<RegistaEntity> getAllRegisti();
     
+    /**
+     * Rstituisce uno specifico regista
+     * @return 
+     */
+    public RegistaEntity getResista(RegistaEntity registaEntity);
+
 }

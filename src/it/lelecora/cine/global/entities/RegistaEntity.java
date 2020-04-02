@@ -17,7 +17,7 @@ import javax.persistence.Id;
  * @author Luca Coraci <luca.coraci@istc.cnr.it>
  */
 @Entity
-public class Regista implements Serializable {
+public class RegistaEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -25,8 +25,9 @@ public class Regista implements Serializable {
     private Long id;
     @Column(unique = true)
     private String nome;
+    private String Cognome;
 
-    public Regista() {
+    public RegistaEntity() {
     }
 
     public Long getId() {
@@ -44,9 +45,15 @@ public class Regista implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    
 
+    public String getCognome() {
+        return Cognome;
+    }
+
+    public void setCognome(String Cognome) {
+        this.Cognome = Cognome;
+    }
+        
     @Override
     public int hashCode() {
         int hash = 0;
@@ -57,10 +64,10 @@ public class Regista implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Regista)) {
+        if (!(object instanceof RegistaEntity)) {
             return false;
         }
-        Regista other = (Regista) object;
+        RegistaEntity other = (RegistaEntity) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

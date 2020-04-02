@@ -6,7 +6,7 @@
 package it.lelecora.cine.global.controllers;
 
 import it.lelecora.cine.global.controllers.exceptions.NonexistentEntityException;
-import it.lelecora.cine.global.entities.Film;
+import it.lelecora.cine.global.entities.FilmEntity;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -31,7 +31,7 @@ public class FilmJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Film film) {
+    public void create(FilmEntity film) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -45,7 +45,7 @@ public class FilmJpaController implements Serializable {
         }
     }
 
-    public void edit(Film film) throws NonexistentEntityException, Exception {
+    public void edit(FilmEntity film) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -73,9 +73,9 @@ public class FilmJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Film film;
+            FilmEntity film;
             try {
-                film = em.getReference(Film.class, id);
+                film = em.getReference(FilmEntity.class, id);
                 film.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The film with id " + id + " no longer exists.", enfe);
@@ -89,19 +89,19 @@ public class FilmJpaController implements Serializable {
         }
     }
 
-    public List<Film> findFilmEntities() {
+    public List<FilmEntity> findFilmEntities() {
         return findFilmEntities(true, -1, -1);
     }
 
-    public List<Film> findFilmEntities(int maxResults, int firstResult) {
+    public List<FilmEntity> findFilmEntities(int maxResults, int firstResult) {
         return findFilmEntities(false, maxResults, firstResult);
     }
 
-    private List<Film> findFilmEntities(boolean all, int maxResults, int firstResult) {
+    private List<FilmEntity> findFilmEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Film.class));
+            cq.select(cq.from(FilmEntity.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,10 +113,10 @@ public class FilmJpaController implements Serializable {
         }
     }
 
-    public Film findFilm(Long id) {
+    public FilmEntity findFilm(Long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Film.class, id);
+            return em.find(FilmEntity.class, id);
         } finally {
             em.close();
         }
@@ -126,7 +126,7 @@ public class FilmJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Film> rt = cq.from(Film.class);
+            Root<FilmEntity> rt = cq.from(FilmEntity.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
