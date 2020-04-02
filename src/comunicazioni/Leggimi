@@ -39,3 +39,24 @@ Caused by: java.lang.ClassNotFoundException: javax.annotation.Generated
 Converebbe trasformare Regista in RegistaEntity e Film in FilmEntity
 
 Le mie aggiunte sono in prova001
+
+-----------------------------------------------------------------------------
+
+03/04/2020 - 00:36
+
+Ciao, allora possiamo usare questo Leggimi come diario di bordo, magari ricordiamoci
+di iniziare il log scrivendo data e ora. 
+
+Allora ho modificato leggermente l'interfaccia ManagerInterface, però non la toccare quella, lasciala a me. 
+
+Va bene invece il rename delle entity. 
+
+Non ti ho toccato il file di prova anche se ci sono errori dovuti alla modifica della interface. 
+
+Poi qualche accortezza sul manager: 
+
+ - rendi i controller come variabili di classe, e non costruiti solo dentro al costruttore.
+   Cioè, dichiarali come variabili di classe e instanziali nel costruttore così ce li hai sempre pronti. 
+
+ - quando ti serve di prendere tutte le entità di una tabella non scomodare le query, ma usa direttamente i controller
+   C'è l'apposito metodo: "findFilmEntities" nel caso dei film ad esempio che fa tutta la query in automatico. 

@@ -19,7 +19,12 @@ public interface ManagerInterface {
     /**
      * Restituisce un film specifico
      */
-    public FilmEntity getFilm(FilmEntity film);
+    public FilmEntity getFilm(String title);
+    
+    /**
+     * Restituisce un film specifico
+     */
+    public FilmEntity getFilm(long filmID);
     
     /**
      * restituisce la lista di tutti i film presenti nel database
@@ -58,6 +63,12 @@ public interface ManagerInterface {
      * Rstituisce uno specifico regista
      * @return 
      */
-    public RegistaEntity getResista(RegistaEntity registaEntity);
+    public RegistaEntity getRegista(String regista);
+    
+    /**
+     * Rstituisce uno specifico regista
+     * @return 
+     */
+    public RegistaEntity getRegista(long registaID);
 
 }

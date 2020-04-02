@@ -12,7 +12,7 @@ package it.lelecora.cine.global.exceptions;
 public class AlreadyExistingException extends Exception{
 
     public AlreadyExistingException() {
-        super("Il regista inserito è già esistente");
+        super("L'entitàc che si vuole inserire è già esistente");
     }
     
     
