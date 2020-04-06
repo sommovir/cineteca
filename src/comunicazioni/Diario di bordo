@@ -1,5 +1,12 @@
+Luca 06/04/2020 - 04:11
 
-03/04/2020 - 1012
+Ho aggiunto dei metodi sull'interfaccia. 
+
+Quando puoi attiva la singletone sul manager del db e poi c'è da gestire un errore del db, non riesce a connettersi .. domani guardiamo con calma
+
+-----------------------------------------------------------------
+
+Lele 03/04/2020 - 1012
 
 Errore nella compilazione, ho tutte le librerie che mi ha messo nella foto
 
@@ -50,7 +57,7 @@ Le mie aggiunte sono in prova001
 
 -----------------------------------------------------------------------------
 
-03/04/2020 - 00:36
+Luca 03/04/2020 - 00:36
 
 Ciao, allora possiamo usare questo Leggimi come diario di bordo, magari ricordiamoci
 di iniziare il log scrivendo data e ora. 
@@ -71,8 +78,3 @@ Poi qualche accortezza sul manager:
 
 -----------------------------------------------------------------------------
 
-Luca 06/04/2020 - 04:11
-
-Ho aggiunto dei metodi sull'interfaccia. 
-
-Quando puoi attiva la singletone sul manager del db e poi c'è da gestire un errore del db, non riesce a connettersi .. domani guardiamo con calma

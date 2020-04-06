@@ -7,6 +7,7 @@ package it.lelecora.cine.lele.engine.prova001;
 
 import it.lelecora.cine.global.controllers.FilmJpaController;
 import it.lelecora.cine.global.controllers.RegistaJpaController;
+import it.lelecora.cine.global.controllers.exceptions.NonexistentEntityException;
 import it.lelecora.cine.global.entities.FilmEntity;
 import it.lelecora.cine.global.entities.RegistaEntity;
 import it.lelecora.cine.global.exceptions.AlreadyExistingException;
@@ -143,15 +144,36 @@ public class Prova001 implements ManagerInterface{
 
     @Override
     public void deleteRegista(RegistaEntity regista) {
+        try {
+            registaJpaController.destroy(regista.getId());
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(Prova001.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
+    
     public void deleteFilm(FilmEntity film) {
+        try {
+            filmJpaController.destroy(film.getId());
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(Prova001.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
+    /* 
+      da aggiungere alla FilmEntity
+       @NamedQuery(name = "getRegista", query = "SELECT a FROM FilmEntity a WHERE a.regista= :regista")
+    */  
     @Override
     public List<FilmEntity> getFilmsByRegista(long registaId) {
-        return null;
+        EntityManager filmEM = entityManager;
+        
+        TypedQuery < FilmEntity > filmTQ = 
+            filmEM.createNamedQuery("getRegista", FilmEntity.class);
+        
+        filmTQ.setParameter("regista", registaId);
+        return filmTQ.getResultList();
     }
     
     
