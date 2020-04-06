@@ -5,17 +5,22 @@
  */
 package it.lelecora.cine.luca.gui;
 
+import it.lelecora.cine.luca.gui.panels.films.FilmsPanel;
+import it.lelecora.cine.luca.gui.panels.films.mr.FilmTableModel;
+
 /**
  *
  * @author Luca Coraci <luca.coraci@istc.cnr.it>
  */
 public class MainFrame extends javax.swing.JFrame {
 
+    private FilmsPanel filmsPanel = new FilmsPanel();
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
+        this.jScrollPane2.setViewportView(filmsPanel);
     }
 
     /**

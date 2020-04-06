@@ -140,6 +140,19 @@ public class Prova001 implements ManagerInterface{
         registaTQ.setParameter("id", registaID);
         return registaTQ.getSingleResult();
     }
+
+    @Override
+    public void deleteRegista(RegistaEntity regista) {
+    }
+
+    @Override
+    public void deleteFilm(FilmEntity film) {
+    }
+
+    @Override
+    public List<FilmEntity> getFilmsByRegista(long registaId) {
+        return null;
+    }
     
     
             

@@ -68,3 +68,8 @@ Poi qualche accortezza sul manager:
 
  - quando ti serve di prendere tutte le entità di una tabella non scomodare le query, ma usa direttamente i controller
    C'è l'apposito metodo: "findFilmEntities" nel caso dei film ad esempio che fa tutta la query in automatico. 
+
+-----------------------------------------------------------------------------
+
+Luca 06/04/2020 - 04:11
+

@@ -70,5 +70,16 @@ public interface ManagerInterface {
      * @return 
      */
     public RegistaEntity getRegista(long registaID);
+    
+    public void deleteRegista(RegistaEntity regista); 
+    
+    public void deleteFilm(FilmEntity film); 
+    
+    /**
+     * ritorna una lista con tutti i film di un dato regista
+     * @param registaId
+     * @return 
+     */
+    public List<FilmEntity> getFilmsByRegista(long registaId);
 
 }
