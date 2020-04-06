@@ -73,3 +73,6 @@ Poi qualche accortezza sul manager:
 
 Luca 06/04/2020 - 04:11
 
+Ho aggiunto dei metodi sull'interfaccia. 
+
+Quando puoi attiva la singletone sul manager del db e poi c'è da gestire un errore del db, non riesce a connettersi .. domani guardiamo con calma
