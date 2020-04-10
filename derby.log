@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Mon Apr 06 04:45:09 CEST 2020:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0171-4d60-9c6a-00001819a558 
+Fri Apr 10 02:42:02 CEST 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0171-6189-531f-000018197eb0 
 on database directory C:\Users\User\Documents\dev\lesson-gui\Cineteca\cinetecaDB with class loader sun.misc.Launcher$AppClassLoader@7d4991ad 
 Loaded from file:/C:/Users/User/Documents/dev/lesson-gui/Cineteca/lib/JAVADB_DRIVER_LABEL/derby.jar
 java.vendor=Oracle Corporation

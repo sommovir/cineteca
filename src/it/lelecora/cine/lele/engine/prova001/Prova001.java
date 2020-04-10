@@ -31,13 +31,13 @@ public class Prova001 implements ManagerInterface{
     
     public Prova001() {
         entityManager = 
-            Persistence.createEntityManagerFactory("CinetecaPU").createEntityManager();
+            Persistence.createEntityManagerFactory("CinetecaPU2").createEntityManager();
         
         filmJpaController = new 
-            FilmJpaController(Persistence.createEntityManagerFactory("CinetecaPU"));
+            FilmJpaController(Persistence.createEntityManagerFactory("CinetecaPU2"));
         
         registaJpaController = 
-            new RegistaJpaController(Persistence.createEntityManagerFactory("CinetecaPU"));
+            new RegistaJpaController(Persistence.createEntityManagerFactory("CinetecaPU2"));
     }
 
     /* 
